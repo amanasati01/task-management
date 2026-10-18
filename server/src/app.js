@@ -12,8 +12,19 @@ const corsOptions = {
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
     if (ENV.NODE_ENV === 'production') {
-      const allowed = Array.isArray(ENV.CLIENT_URL) ? ENV.CLIENT_URL : [ENV.CLIENT_URL];
-      if (allowed.includes(origin)) return callback(null, true);
+      const urls = (ENV.CLIENT_URL || '')
+        .split(',')
+        .map((u) => u.trim().replace(/\/$/, ''))
+        .filter(Boolean);
+
+      const isAllowed = urls.some((u) => {
+        const fullUrl = u.startsWith('http') ? u : `https://${u}`;
+        return origin === fullUrl;
+      }) || origin.endsWith('.vercel.app');
+
+      if (isAllowed || urls.length === 0) {
+        return callback(null, true);
+      }
       return callback(new Error('CORS policy: Not allowed by CORS'));
     }
     return callback(null, true);
