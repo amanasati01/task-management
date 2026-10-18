@@ -4,9 +4,9 @@ I built this Employee & Task Management System for the Roots Media Marketing tec
 
 ## Deployment Links
 
-- Frontend: `https://roots-task-management.vercel.app` (placeholder)
-- Backend API: `https://roots-task-management-api.onrender.com/api` (placeholder)
-- Health Check: `https://roots-task-management-api.onrender.com/api/health` (placeholder)
+- Frontend: https://task-management-h9351vz9t-aman-asatis-projects.vercel.app/
+- Backend API: https://task-management-7ydn.onrender.com
+- Health Check: https://task-management-7ydn.onrender.com/api/health
 
 ## Tech Stack
 
